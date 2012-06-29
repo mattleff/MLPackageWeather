@@ -1,0 +1,28 @@
+{% extends "template/base.html" %}
+
+{% block content %}
+{{ parent() }}
+{% import "macro/form.html" as formMacro %}
+{% import "macro/section.html" as sectionMacro %}
+{% import "macro/admin.html" as adminMacro %}
+
+{{ adminMacro.header( 'earth.png', "Weather Forecast" ) }}
+
+{{ sectionMacro.formStart( "post", "weather/forecast", { "class": "form-horizontal" } ) }}
+
+<p>Get a forecast using our new package!</p>
+
+<p>Zip: {{ formMacro.text("zip", { "value": zip, "class": "span1", "maxlength": 5}) }} {{ formMacro.submit("submit", { "value": "Get Forecast!" }) }}</p>
+
+{{ sectionMacro.formEnd() }}
+
+{% if weather_data %}
+<p>
+	{{ "Forecast for zip code: "~zip }}
+	<br />{{ "High Temperature:"|trans }} {{ weather_data.HighTemperature }}˚
+	<br />{{ "Low Temperature:"|trans }} {{ weather_data.LowTemperature }}˚
+	<br />{{ "Chance of Precipitation:"|trans }} {{ weather_data.ChancePrecipitation }}%
+</p>
+{% endif %}
+
+{% endblock %}

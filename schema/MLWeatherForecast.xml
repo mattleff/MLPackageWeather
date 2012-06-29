@@ -1,0 +1,15 @@
+<database>
+	<table name="weather_forecasts">
+		<behavior name="auto_add_pk"/>
+		<behavior name="timestampable"/>
+		<column name="zip_code" type="varchar" required="true"/>
+		<column name="date" type="date" required="true"/>
+		<column name="high_temperature" type="integer" required="true"/>
+		<column name="low_temperature" type="integer" required="true"/>
+		<column name="chance_precipitation" type="integer" required="false"/>
+		<unique>
+			<unique-column name="zip_code"/>
+			<unique-column name="date"/>
+		</unique>
+	</table>
+</database>
